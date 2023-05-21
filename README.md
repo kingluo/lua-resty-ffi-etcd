@@ -8,13 +8,13 @@ It encapsulates the etcd official [go client library](https://pkg.go.dev/go.etcd
 
 If you access etcd directly using bare HTTP/GRPC, you will face the following problems:
 
-* [smart load balancer](https://etcd.io/docs/v3.5/learning/design-client/) for multi-node etcd clusters
+* [smart load balancer](https://etcd.io/docs/v3.5/learning/design-client/) for multi-nodes etcd cluster
   * Sync cluster membership changes, e.g. replace a stale node
   * Full-featured node health check based on etcd client design
   * Conditional retry
 * Compose low-level APIs to do some high-level stuff like authentication
 * Lack of support for additional features like [grpc-proxy](https://etcd.io/docs/v3.5/op-guide/grpc_proxy/#client-endpoint-synchronization-and-name-resolution)
-* Keep up-to-date with etcd official server changes and fix bugs yourself
+* Keep up-to-date with etcd official server code changes and fix bugs yourself
 
 Since etcd has an brilliant and active official go client, why not encapsulate it so that we could reuse it in openresty?
 
