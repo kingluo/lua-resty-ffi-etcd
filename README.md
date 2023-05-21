@@ -2,20 +2,21 @@
 
 The openresty etcd client library.
 
-It encapsulates etcd official go client [go-etcd](https://pkg.go.dev/go.etcd.io/etcd/client/v3) library.
+It encapsulates the etcd official [go client library](https://pkg.go.dev/go.etcd.io/etcd/client/v3).
 
 ## Background
 
-If you access etcd directly using HTTP/GRPC, you will face the following problems:
+If you access etcd directly using bare HTTP/GRPC, you will face the following problems:
 
-* Accessing etcd is not a pure protocol work, based on the underlying API, you need to consider a [smart load balancer](https://etcd.io/docs/v3.5/learning/design-client/) for multi-node etcd clusters
+* Accessing etcd is not a pure protocol work, you need to consider a [smart load balancer](https://etcd.io/docs/v3.5/learning/design-client/) for multi-node etcd clusters
   * Sync cluster membership changes, e.g. replace a stale node
   * Full-featured node health check based on etcd client design
   * Conditional retry
 * You need to compose low-level APIs to do some high-level stuff like authentication
 * Lack of support for additional features like [grpc-proxy](https://etcd.io/docs/v3.5/op-guide/grpc_proxy/#client-endpoint-synchronization-and-name-resolution)
+* Keep up-to-date with etcd official server changes and fix bugs yourself
 
-Since etcd has official go client, why not encapsulate it so that we could reuse it in openresty?
+Since etcd has an brilliant and active official go client, why not encapsulate it so that we could reuse it in openresty?
 
 [lua-resty-ffi](https://github.com/kingluo/lua-resty-ffi) provides an efficient and generic API to do hybrid programming
 in openresty with mainstream languages (Go, Python, Java, Rust, Nodejs).
@@ -65,3 +66,10 @@ nginx -p $PWD -c nginx.conf
 # in another terminal, run demo
 curl localhost:20000/demo/watch
 ```
+
+### Benchmark
+
+![etcd_benchmark](etcd_benchmark.svg)
+
+The overhead of encapsulation is approximately `20%`. Of course, there is improvement room.
+
