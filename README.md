@@ -75,3 +75,9 @@ https://github.com/kingluo/etcd-benchmark
 
 The overhead of encapsulation is approximately `20%`. Of course, there is improvement room.
 
+### TODO
+
+* [x] Watcher
+* [ ] KV
+* [ ] Lease
+
