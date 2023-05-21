@@ -71,5 +71,7 @@ curl localhost:20000/demo/watch
 
 ![etcd_benchmark](etcd_benchmark.svg)
 
+https://github.com/kingluo/etcd-benchmark
+
 The overhead of encapsulation is approximately `20%`. Of course, there is improvement room.
 
